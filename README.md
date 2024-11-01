@@ -99,10 +99,3 @@ CREATE DATABASE mydb;
 1. **"Database Setup" Section**: I included detailed steps on how to create the database and the necessary tables.
 
 2. **SQL Commands**: I provided the SQL commands that users can run in MySQL to create the database structure.
-
-### How to Use this Markdown
-
-1. **Update the `README.md` file** in your project with the content above.
-2. **Save the file**.
-
-Now, users will have all the necessary information to set up the database in MySQL, in addition to the installation and usage instructions. If you need any further modifications or additional information, please let me know!
