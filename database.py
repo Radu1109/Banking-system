@@ -2,13 +2,14 @@ import pymysql
 
 def connect_to_database():
     '''Connecting to MySql data base'''
-    return pymysql.connect(
+    conn = pymysql.connect(
         host="localhost",
         user="root",
         password="radumihai01",
         database="mydb",
         port=3306
     )
+    return conn
 def get_user_balance(username,cursor) -> float:
     """
     Arguments:

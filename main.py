@@ -2,16 +2,11 @@
 import account_managment
 from Account import Account
 from database import get_user_info
+from database import connect_to_database
 from account_managment import *
 import pymysql
 
-conn = pymysql.connect(
-    host= "localhost",
-    user= "root",
-    password= "radumihai01",
-    database= "mydb",
-    port= 3306
-)
+conn = connect_to_database()
 cursor = conn.cursor()
 
 cursor.execute('''

@@ -1,13 +1,8 @@
 import pymysql
+from database import connect_to_database
 
-conn = pymysql.connect(
-    host= "localhost",
-    user= "root",
-    password= "radumihai01",
-    database= "mydb",
-    port= 3306
-)
 
+conn = connect_to_database()
 cursor = conn.cursor()
 class Account:
     def __init__(self) -> None:
