@@ -91,7 +91,6 @@ Right-click in the left pane and select Create Schema....
 Name your schema (e.g., mydb) and click Apply.
 If using the command line, run the following command:
 
-If using the command line, run the following command:
 CREATE DATABASE mydb;
 
 
