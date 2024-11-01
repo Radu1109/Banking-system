@@ -4,27 +4,25 @@ from transactions import user_transaction
 def deposit_amount(username,amount,cursor,conn):
 
     '''
-    Functia de depozitare a banilor in contul userului
+    Deposit money into user's account
 
-    Argumente:
-        username: Username-ul contului utilizatorului
-        amount: Suma introdusa de utilizator,
-        cursor: Cursoul de acces la baza de date,
-        conn: Reprezinta conexiunea activa la b.d.
-        return = None
+    Arguments:
+    - username: The username of the user's account.
+    - amount: The amount entered by the user.
+    - cursor: The cursor to access the database.
+    - conn: Represents the active connection to the database.
+    - return: None.
 
-    Nota:
-
-        Functie definita in `account_managment.py`
+    Note:
+    Function defined in account_management.py.
     '''
 
     money = get_user_balance(username, cursor)
     limit = 9999.99
 
     ''' 
-        Bucla infinita while True: este folosita pentru a continua
-    folosirea programului chiar si dupa blocul
-    try-except prinde vreo eroare umana sau a codului
+        The infinite while True loop is used to keep the program running 
+    even after the try-except block catches a human or code error.
     '''
     while True:
         try:
@@ -46,15 +44,15 @@ def deposit_amount(username,amount,cursor,conn):
                 rest_f = amount - rest_i
 
                 '''
-                    Daca suma introdusa de utilizator este mai mare decat limita impusa de program,
-                programul va stocla suma care este necesara pentru atingerea limitei programului prin variabila
-                "rest_i(initial)" si o va scadea din suma introdusa de utilizator, pentru a afla restul, stocat
-                in variabila rest_f(final)
+                    If the amount entered by the user exceeds the program limit,
+                the program will store the excess in the variable "rest_i(initial)"
+                and subtract it from the entered amount to find the remainder,
+                stored in the variable "rest_f(final)".
                 '''
                 user_transaction(username= username, amount= amount, cursor= cursor, conn= conn)
 
                 print(f"Deposit was successful, but the amount exceeded our {limit}, return {rest_f}")
-                break #Programul inceteaza bucla infinita pentru ca si-a atins scopul.
+                break #The program exits the infinite loop because it has achieved its purpose.
             else:
                 cursor.execute('''
                             UPDATE customers
@@ -67,37 +65,36 @@ def deposit_amount(username,amount,cursor,conn):
 
                 print("Deposit successful!")
                 break
-        except ValueError: #Acest except prinde orice ValueError cauzat de user, ex: introducerea unui string pentru variabila amount
+        except ValueError: #This except block catches any ValueError caused by the user, e.g., entering a string for the amount variable.
             print("You must input correct values!")
-        except Exception as e: #Acest except va prinde oricare alta eroare cauzata de program
+        except Exception as e: #This except block catches any other errors by the program.
             print("Something went wrong", e)
 
 
 def withdraw_amount(username,amount,cursor,conn):
 
     '''
-    Functia de extragere a banilor din contul userului
+    Withdraw money from the user's account.
 
-    Argumente:
+    Arguments:
 
-        username: Username-ul contului utilizatorului
-        amount: Suma introdusa de utilizator,
-        cursor: Cursoul de acces la baza de date,
-        conn: Reprezinta conexiunea activa la b.d.
-        return = None
+        username: The username of the user's account.
+        amount: The amount entered by the user.
+        cursor: The cursor to access the database.
+        conn: Represents the active connection to the database.
+        return: None.
 
-    Nota:
+    Note:
 
-        Functie definita in `account_managment.py`
+        Function defined in `account_management.py`.
     '''
 
     money = money = get_user_balance(username,cursor) #
     limit = 9999.99
 
-    '''
-        Bucla infinita while True: este folosita pentru a continua
-    folosirea programului chiar si dupa blocul
-    try-except prinde vreo eroare umana sau a codului
+    ''' 
+        The infinite while True loop is used to keep the program running 
+    even after the try-except block catches a human or code error.
     '''
     while True:
         try:
@@ -116,9 +113,9 @@ def withdraw_amount(username,amount,cursor,conn):
                 break
             else:
                 '''
-                    Daca toate conditiile au fost indeplinite, baza de date va fi updatata
-                astfel incat sa fie salvata modificarea de retragerea a x sume de bani
-                din contul utilizatorului
+                    If all conditions are met, the database will be updated 
+                to save the change of withdrawing x amount of money 
+                from the user's account.
                 '''
                 cursor.execute('''
                     UPDATE customers
@@ -127,32 +124,26 @@ def withdraw_amount(username,amount,cursor,conn):
                     ''', (amount, username))
                 conn.commit()
                 user_transaction(username=username, amount=amount, cursor=cursor, conn=conn)
-                break #Programul inceteaza bucla infinita pentru ca si-a atins scopul.
-        except ValueError: #Acest except prinde orice ValueError cauzat de user, ex: introducerea unui string pentru variabila amount
+                break
+        except ValueError:
             print("You must input correct values!")
-        except Exception as e: #Acest except va prinde oricare alta eroare cauzata de program
+        except Exception as e:
             print("Something went wrong", e)
             print("Withdraw successful!")
 
 def menu(username,cursor,conn):
     '''
-    Meniul contului utilizatorului
+    User account menu.
 
-    Argumente:
+    Arguments:
 
-    :param username: Username-ul contului utilizatorului
-    :param cursor: Cursoul de acces la baza de date
-    :param conn: Reprezinta conexiunea activa la b.d.
-    :return: None
+    :param username: The username of the user's account.
+    :param cursor: The cursor to access the database.
+    :param conn: Represents the active connection to the database.
+    :return: None.
 
     Note:
-        Functie definita in `account_managment.py`
-    '''
-
-    '''
-        Bucla infinita while True: este folosita pentru a continua
-    folosirea programului chiar si dupa blocul
-    try-except prinde vreo eroare umana sau a codului
+        Function defined in `account_management.py`.
     '''
     while True:
         try:

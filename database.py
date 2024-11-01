@@ -1,7 +1,7 @@
 import pymysql
 
 def connect_to_database():
-    '''Conectare la baza de date din MySql'''
+    '''Connecting to MySql data base'''
     return pymysql.connect(
         host="localhost",
         user="root",
@@ -11,17 +11,15 @@ def connect_to_database():
     )
 def get_user_balance(username,cursor) -> float:
     """
-    Returnează soldul curent al utilizatorului specificat.
+    Arguments:
+    username: The username of the user's account.
+    cursor: The cursor to access the database.
 
-    Argumente:
-        username : Username-ul contului utilizatorului .
-        cursor: Cursoul de acces la baza de date.
+    Returns:
+    float: The user's balance.
 
-    Returneaza:
-        float: Soldul utilizatorului.
-
-    Note:
-        Această funcție este definită în modulul `database.py`.
+    Notes:
+    This function is defined in the `database.py` module.
     """
     cursor.execute('''SELECT money FROM customers
     WHERE username = %s''',(username,))
@@ -30,25 +28,24 @@ def get_user_balance(username,cursor) -> float:
 
 def get_user_info(username,cursor) -> list:
     '''
-    Informatiile utilizatorului din baza de date
+    Getting user's info
 
-    Argumente:
+    Arguments:
 
-     username: Username-ul contului utilizatorului.
-     cursor: Cursoul de acces la baza de date.
+    username: The username of the user's account.
+    cursor: The cursor to access the database.
     :return: list.
 
-    Note:
-    Această funcție este definită în modulul `database.py`.
+    Notes:
+    This function is defined in the `database.py` module.
     '''
     cursor.execute('''SELECT * FROM customers
     WHERE username = %s''',(username,))
     account = cursor.fetchone() #Variabila account va stoca datele din b.d. sub forma de lista
     if account:
         ''' 
-            Bucla infinita while True: este folosita pentru a continua
-        folosirea programului chiar si dupa blocul
-        try-except prinde vreo eroare umana sau a codului
+            The infinite while True loop is used to keep the program running 
+        even after the try-except block catches a human or code error.
         '''
         while True:
             try:

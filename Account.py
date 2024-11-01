@@ -12,24 +12,26 @@ cursor = conn.cursor()
 class Account:
     def __init__(self) -> None:
         '''
-        Construirea obiectului de tip Account
+        Constructing an Account object.
 
-        Argumente: self
+        Arguments:
+            self
 
-        return: None
+        Returns:
+            None
 
         Note:
-            Functia se gaseste in Account.py
+            The function is located in Account.py.
         '''
         print("Input the following data\n")
         while True:
             try:
                 self.first_name = input("Your first name = \n")
-                if not self.first_name.isalpha(): #Utilizatorul este obligat sa introduca doar litere
+                if not self.first_name.isalpha(): #User is forced to input only letters
                     print("Input only letters!")
                     continue
                 self.last_name = input("Your last name = \n")
-                if not self.last_name.isalpha(): #Utilizatorul este obligat sa introduca doar litere
+                if not self.last_name.isalpha(): #User is forced to input only letters
                     print("Input only letters")
                     continue
                 self.email = input("Your email address = \n") + "@" + input("Email type (yahoo, gmail, etc): ").lower() + ".com"
@@ -42,7 +44,7 @@ class Account:
         while True:
             try:
                 pin = input("Your pin must be of 4 digits = \n")
-                if pin.isdigit() and len(pin) == 4: #Utilizatorul este obligat sa introduca un PIN format din 4 cifre.
+                if pin.isdigit() and len(pin) == 4: #The user is required to enter a PIN consisting of 4 digits.
                     self.pin = pin
                     break
                 else:
@@ -58,14 +60,16 @@ class Account:
 
     def display_account(self) -> None:
         '''
-        Afisarea propietatilor obiectului Account
+        Displaying the properties of the Account object.
 
-        Argumente: self
+        Arguments:
+            self
 
-        return: None
+        Returns:
+            None
 
         Note:
-            Functia se gaseste in Account.py
+            The function is located in Account.py.
         '''
         try:
             account = {"first_name" : self.first_name,
@@ -81,14 +85,16 @@ class Account:
 
     def insert_account_into_db(self,account) -> None:
         '''
-        Salvarea propietatilor obiectului Account in b.d.
+        Saving the properties of the Account object in the database.
 
-        Argumente: self
+        Arguments:
+            self
 
-        return: None
+        Returns:
+            None
 
         Note:
-            Functia se gaseste in Account.py
+            The function is located in Account.py.
         '''
         try:
             cursor.execute("INSERT INTO customers (first_name, last_name, email, username, pin, money) VALUES (%s, %s, %s, %s, %s, %s)"

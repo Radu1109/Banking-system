@@ -1,19 +1,20 @@
 
 def user_transaction(username,amount,cursor,conn) -> None:
     """
-        Salveaza tranzactia in baza de date
+    Saves the transaction in the database.
 
-        Argumente:
-            username : Username-ul contului utilizatorului.
-            amount: Suma folosita in tranzactie
-            cursor: Cursoul de acces la baza de date.
-            conn: Conexiunea la baza de date
+    Arguments:
+        username: The username of the user's account.
+        amount: The amount used in the transaction.
+        cursor: The cursor to access the database.
+        conn: The connection to the database.
 
-            return: none
+    Returns:
+        None.
 
-        Note:
-            Această funcție este definită în modulul `transactions.py`.
-        """
+    Note:
+        This function is defined in the `transactions.py` module.
+    """
     cursor.execute('''SELECT id_customer FROM customers
     WHERE username = %s''',(username,))
     id_customer = cursor.fetchone()[0]
