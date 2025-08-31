@@ -4,8 +4,8 @@ def connect_to_database():
     '''Connecting to MySql data base'''
     conn = pymysql.connect(
         host="localhost",
-        user="root",
-        password="radumihai01",
+        user="YOUR USERNAME",
+        password="YOURPASSWORD",
         database="mydb",
         port=3306
     )
